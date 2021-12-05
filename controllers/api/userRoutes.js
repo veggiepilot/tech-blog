@@ -1,7 +1,8 @@
 const router = require('express').Router();
-const { User } = require('../..models');
+const { User } = require('../../models');
 
 // Create a new user
+// Matches /api/users
 router.post('/', async (req, res) => {
     try { 
         const userData = await User.create(req.body);
@@ -18,6 +19,7 @@ router.post('/', async (req, res) => {
 });
 
 // Logging in
+// Matches /api/users/
 router.post('/login', async (req, res) => {
     try {
         const userData = await User.findOne({ where: {
@@ -50,6 +52,7 @@ router.post('/login', async (req, res) => {
 });
 
 // Logging out
+// Matches /api/users
 router.post('/logout', (req, res) => {
     if (req.session.logged_in) {
         req.session.destroy(() => {
@@ -59,3 +62,5 @@ router.post('/logout', (req, res) => {
         res.status(404).end()
     }
 } );
+
+module.exports = router;

@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Post } = require('../../models');
 
 // Create a new post
+//Matches /api/posts
 router.post('/', async (req, res) => {
     try {
         const newPost = await Post.create({
@@ -16,6 +17,7 @@ router.post('/', async (req, res) => {
 });
 
 // Update a post
+// Matches /api/posts/:id
 router.put('/:id', async (req, res) => {
     try{
         const postData = await Post.update({
@@ -32,6 +34,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete a post
+// Matches /api/posts/:id
 router.delete('/:id', async (req, res) => {
     try {
         const postData = await Post.destroy({
