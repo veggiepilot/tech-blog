@@ -17,6 +17,5 @@ router.use('/posts', postRoutes);
     // /dashboard
     // /signin
     // /signup
-    // /api/users
     
 module.exports = router;
