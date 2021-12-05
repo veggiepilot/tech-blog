@@ -1,3 +1,10 @@
+const router = require('express').Router();
+const userRoutes = require('./userRoutes');
+const postRoutes = require('./postRoutes');
+
+router.use('/users', userRoutes);
+router.use('/posts', postRoutes);
+
 // Routes
 
     // /
@@ -11,21 +18,5 @@
     // /signin
     // /signup
     // /api/users
-
-// Models
-    // Posts
-        // id
-        // title
-        // content
-    // Users
-        // id
-        // username
-        // password
-
-// Relationship
-
-    // User hasMany Post
-    // Post belongsTo User
-
     
-
+module.exports = router;
