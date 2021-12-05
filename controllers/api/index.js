@@ -21,5 +21,11 @@
         // id
         // username
         // password
+
+// Relationship
+
+    // User hasMany Post
+    // Post belongsTo User
+
     
 
