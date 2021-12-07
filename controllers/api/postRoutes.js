@@ -21,11 +21,16 @@ router.post('/', withAuth, async (req, res) => {
 // Matches /api/posts/:id
 router.put('/:id', withAuth, async (req, res) => {
     try{
-        const postData = await Post.update({
+        const postData = await Post.update(
+            {
+                ...req.body,
+            },
+            {
             where: {
                 id: req.params.id
             }
         });
+        console.log(postData);
 
         res.status(200).json(postData);
 
