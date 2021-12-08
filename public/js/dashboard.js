@@ -1,9 +1,8 @@
 const updateButtonHandler = async (event) => {
     if (event.target.hasAttribute('id')) {
         const id = event.target.getAttribute('id');
-
         const response = await fetch(`/api/posts/${id}`, {
-            method: 'GET'
+            method: 'PUT'
         }) ;
 
         if (response.ok) {
@@ -74,7 +73,12 @@ if (update) {
     update.addEventListener('click', updatePostButtonHandler);
 };
 
-const post = document.querySelector('.post');
+const post = document.querySelector('.create-post');
 if (post) {
-    post.addEventListener('click', createPostFormHandler);
+    post.addEventListener('submit', createPostFormHandler);
+};
+
+const updatePost = document.querySelector('.update-post');
+if (updatePost) {
+    updatePost.addEventListener('submit', updateButtonHandler);
 };

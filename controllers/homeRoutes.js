@@ -33,7 +33,6 @@ router.get('/post/:id', async (req, res) => {
         });
 
         const post = postData.get({ plain: true });
-        console.log(post);
         res.render('update', {post});
     } catch (err) {
         res.status(500).json(err);
