@@ -12,7 +12,6 @@ router.post('/', withAuth, async (req, res) => {
         });
 
         res.status(200).json(newPost);
-        return;
     } catch (err) {
         res.status(400).json(err);
     }
@@ -31,7 +30,6 @@ router.put('/:id', withAuth, async (req, res) => {
                 id: req.params.id
             }
         });
-        console.log(postData);
 
         res.status(200).json(postData);
 

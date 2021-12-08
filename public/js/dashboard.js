@@ -3,7 +3,7 @@ const updateButtonHandler = async (event) => {
         const id = event.target.getAttribute('id');
 
         const response = await fetch(`/api/posts/${id}`, {
-            method: 'PUT'
+            method: 'GET'
         }) ;
 
         if (response.ok) {
@@ -17,7 +17,6 @@ const updateButtonHandler = async (event) => {
 const deleteButtonHandler = async (event) => {
     if (event.target.hasAttribute('id')) {
         const id = event.target.getAttribute('id');
-        console.log(id);
 
         const response = await fetch(`/api/posts/${id}`, {
             method: 'DELETE'
@@ -60,6 +59,11 @@ const createPostButtonHandler = () => {
     document.location.replace('/post-create')   
 };
 
+const updatePostButtonHandler = (event) => {
+    const id = event.target.getAttribute('id');
+    document.location.replace(`/post/${id}`)   
+};
+
 const createPost = document.querySelector('#create-post');
 if (createPost) {
     createPost.addEventListener('click', createPostButtonHandler);
@@ -67,10 +71,10 @@ if (createPost) {
 
 const update = document.querySelector('.update');
 if (update) {
-    update.addEventListener('click', updateButtonHandler);
+    update.addEventListener('click', updatePostButtonHandler);
 };
 
-const post = document.querySelector('#post');
+const post = document.querySelector('.post');
 if (post) {
     post.addEventListener('click', createPostFormHandler);
 };
