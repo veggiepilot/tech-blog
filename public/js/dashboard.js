@@ -1,8 +1,17 @@
 const updateButtonHandler = async (event) => {
+    event.preventDefault();
+
+    const title = document.querySelector('#title').value.trim();
+    const content = document.querySelector('#content').value.trim();
+
     if (event.target.hasAttribute('id')) {
         const id = event.target.getAttribute('id');
         const response = await fetch(`/api/posts/${id}`, {
-            method: 'PUT'
+            method: 'PUT',
+            body: JSON.stringify({ title, content }),
+            headers: {
+                'Content-Type': 'application/json',
+              },
         }) ;
 
         if (response.ok) {
@@ -68,9 +77,14 @@ if (createPost) {
     createPost.addEventListener('click', createPostButtonHandler);
 };
 
-const update = document.querySelector('.update');
+const update = document.querySelector('.posts');
 if (update) {
     update.addEventListener('click', updatePostButtonHandler);
+};
+
+const postDelete = document.querySelector('.delete');
+if (postDelete) {
+    postDelete.addEventListener('click', deleteButtonHandler);
 };
 
 const post = document.querySelector('.create-post');
@@ -80,5 +94,5 @@ if (post) {
 
 const updatePost = document.querySelector('.update-post');
 if (updatePost) {
-    updatePost.addEventListener('submit', updateButtonHandler);
+    updatePost.addEventListener('click', updateButtonHandler);
 };

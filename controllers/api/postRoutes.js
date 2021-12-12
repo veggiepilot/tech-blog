@@ -23,7 +23,7 @@ router.put('/:id', withAuth, async (req, res) => {
     try{
         const postData = await Post.update(
             {
-                ...req.body,
+                ...req.body
             },
             {
             where: {
@@ -37,6 +37,8 @@ router.put('/:id', withAuth, async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+
 
 // Delete a post
 // Matches /api/posts/:id
