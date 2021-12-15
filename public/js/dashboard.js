@@ -23,20 +23,18 @@ const updateButtonHandler = async (event) => {
 
 };
 const deleteButtonHandler = async (event) => {
-    if (event.target.hasAttribute('id')) {
-        const id = event.target.getAttribute('id');
 
-        const response = await fetch(`/api/posts/${id}`, {
-            method: 'DELETE'
-        }) ;
+    const id = event.target.getAttribute('id');
 
-        if (response.ok) {
-            document.location.replace('/dashboard');
-        } else {
-            alert('Failed to delete post');
-        }
-    };
+    const response = await fetch(`/api/posts/${id}`, {
+        method: 'DELETE'
+    }) ;
 
+    if (response.ok) {
+        document.location.replace('/dashboard');
+    } else {
+        alert('Failed to delete post');
+    }
 };
 
 const createPostFormHandler = async (event) => {
@@ -67,24 +65,21 @@ const createPostButtonHandler = () => {
     document.location.replace('/post-create')   
 };
 
-const updatePostButtonHandler = (event) => {
+const postHandler = (event) => {
     const id = event.target.getAttribute('id');
-    document.location.replace(`/post/${id}`)   
-};
+    
+    document.location.replace(`/post/${id}`);
+      
+}
 
 const createPost = document.querySelector('#create-post');
 if (createPost) {
     createPost.addEventListener('click', createPostButtonHandler);
 };
 
-const update = document.querySelector('.posts');
-if (update) {
-    update.addEventListener('click', updatePostButtonHandler);
-};
-
-const postDelete = document.querySelector('.delete');
-if (postDelete) {
-    postDelete.addEventListener('click', deleteButtonHandler);
+const posts = document.querySelector('.posts');
+if (posts) {
+    posts.addEventListener('click', postHandler);
 };
 
 const post = document.querySelector('.create-post');
@@ -95,4 +90,9 @@ if (post) {
 const updatePost = document.querySelector('.update-post');
 if (updatePost) {
     updatePost.addEventListener('click', updateButtonHandler);
+};
+
+const deletePost = document.querySelector('.delete-post');
+if (deletePost) {
+    deletePost.addEventListener('click', deleteButtonHandler);
 };
