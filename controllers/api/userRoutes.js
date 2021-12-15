@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Comment } = require('../../models');
 
 // Create a new user
 // Matches /api/users
@@ -62,5 +62,18 @@ router.post('/logout', (req, res) => {
         res.status(404).end()
     }
 } );
+
+// Matches /api/users
+router.post('/comment', async (req, res) => {
+    console.log(req.session.user_id);
+    try {   
+        
+        const comment = await Comment.create(req.body);
+        res.status(200).json(comment);
+
+    } catch (err) {
+        res.status(400).json(err);
+    }
+});
 
 module.exports = router;
