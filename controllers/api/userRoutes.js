@@ -68,7 +68,11 @@ router.post('/comment', async (req, res) => {
     console.log(req.session.user_id);
     try {   
         
-        const comment = await Comment.create(req.body);
+        const comment = await Comment.create({
+            user_id: req.session.user_id,
+            ...req.body
+            }
+            );
         res.status(200).json(comment);
 
     } catch (err) {

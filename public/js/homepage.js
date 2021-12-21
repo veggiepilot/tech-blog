@@ -29,12 +29,19 @@ const showComment = () => {
 
     const cardElement = document.getElementsByClassName('card-body')[0];
     cardElement.appendChild(form);
+
+    document
+    .querySelector('.comment-form')
+    .addEventListener('submit', submitComment);
 };
 
 const submitComment =  async (event) => {
     event.preventDefault();
 
-    const comment = document.getElementById('#comment').value.trim();
+    console.log(event.target)
+    const comment = document.querySelector('textarea[name="comment"]').value;
+
+    console.log(comment);
 
     if (comment) {
         const response = await fetch(`/api/users/comment`, {
@@ -49,15 +56,9 @@ const submitComment =  async (event) => {
             alert(response.statusText);
         }
     }
-    console.log('hi');
 };
 
 const post = document.querySelector('#comment-button');
 if (post) {
     post.addEventListener('click', showComment);
-};
-
-const el = document.querySelector('.comment-form');
-if (el) {
-    el.addEventListener('submit', submitComment);
 };
