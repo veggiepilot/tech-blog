@@ -1,7 +1,5 @@
 const showComment = (e) => {
     if(e.target.name === 'comment') {
-
-        // console.log(e.target)
         e.target.remove();
         const form = document.createElement('form');
         form.classList.add('mt-5', 'comment-form');
@@ -14,7 +12,7 @@ const showComment = (e) => {
     
         const textArea = document.createElement('textarea');
         textArea.setAttribute('name', 'comment-area');
-        textArea.setAttribute('id', 'comment');
+        textArea.setAttribute('id', e.target.id);
         textArea.setAttribute('cols', '100');
         textArea.setAttribute('rows', '5');
     
@@ -27,12 +25,8 @@ const showComment = (e) => {
         form.appendChild(label);
         form.appendChild(textArea);
         form.appendChild(button);
-    
-        if(document.querySelector('#id') === e.target.id ){
-            console.log('Match')
-        }
+
         const cardElement = document.getElementById(e.target.id);
-        console.log(cardElement)
         cardElement.appendChild(form);
     
         document
@@ -42,24 +36,22 @@ const showComment = (e) => {
     
 };
 
-const submitComment =  async (event) => {
-    event.preventDefault();
+const submitComment =  async (e) => {
+    e.preventDefault();
+    const text = document.querySelector('textarea[name="comment-area"]').value;
+    const post_id = parseInt(document.querySelector('textarea').id);
 
-    console.log(event.target)
-    const comment = document.querySelector('textarea[name="comment"]').value;
-
-    console.log(comment);
-
-    if (comment) {
+    if (text) {
         const response = await fetch(`/api/users/comment`, {
             method: 'POST',
-            body: JSON.stringify({ comment }),
+            body: JSON.stringify({ text, post_id }),
             headers: {'Content-Type': 'application/json'}
         });
 
         if (response.ok) {
             document.location.reload();
         } else {
+            console.log(response)
             alert(response.statusText);
         }
     }
