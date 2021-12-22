@@ -65,8 +65,6 @@ router.post('/logout', (req, res) => {
 
 // Matches /api/users
 router.post('/comment', async (req, res) => {
-    console.log(req.session.user_id);
-    console.log(req.body)
     try {   
         
         const comment = await Comment.create({

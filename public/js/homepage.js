@@ -51,7 +51,6 @@ const submitComment =  async (e) => {
         if (response.ok) {
             document.location.reload();
         } else {
-            console.log(response)
             alert(response.statusText);
         }
     }
