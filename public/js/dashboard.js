@@ -67,9 +67,7 @@ const createPostButtonHandler = () => {
 
 const postHandler = (event) => {
     const id = event.target.getAttribute('id');
-    
-    document.location.replace(`/post/${id}`);
-      
+    document.location.replace(`/post/${id}`); 
 }
 
 const createPost = document.querySelector('#create-post');

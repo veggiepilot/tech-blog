@@ -1,14 +1,15 @@
-
+<div id="posts">
 {{#each posts as |post|}}
 <div class="container post">
     <div class="card mt-2">
-        <div class="card-header card text-white bg-dark mb-3" id={{post.user.id}}><strong>{{post.title}}</strong><p>Posted by {{post.user.username}} <span class="date">{{ format_date post.date_created}}</span></p></div>
-        <div class="card-body">
+        <div class="card-header card text-white bg-dark mb-3"><strong>{{post.title}}</strong><p>Posted by {{post.user.username}} <span class="date">{{ format_date post.date_created}}</span></p></div>
+        <div class="card-body" id={{post.id}}>
             <p class="card-text">{{post.content}}</p>
-            <button type="submit" class="btn btn-secondary" id="comment-button">Comment</button>
+            <button type="submit" class="btn btn-secondary" id={{post.id}} name="comment">Comment</button>
         </div>  
     </div>   
 </div>
 <script src="./js/homepage.js"></script>
 {{/each}}
+</div>
 
